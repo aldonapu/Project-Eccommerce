@@ -1,0 +1,68 @@
+.ProfileContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+
+    .ProfilArea{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        padding: 1rem;
+        box-shadow: 5px 5px 10px rgb(43, 40, 40);
+        border-radius: 10px;
+        .PP{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+        }
+    }
+    .UserInfo{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 5px 5px 10px rgb(43, 40, 40);
+        width: 50%;
+
+        .infomasi{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            span{
+                font-weight: bold;
+                font-size: 2rem;
+            }
+        }
+        .inputan1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem;
+           
+        }
+        .inputan2{
+            display: flex;
+            flex-direction: column;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }.inputan3{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem;
+            
+            .city{
+                width: 50%;
+            }
+            .provinci{
+                width: 50%;
+            }
+        }
+        
+    }
+
+}

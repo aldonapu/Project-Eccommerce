@@ -1,0 +1,136 @@
+.ContainerUtama{
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+
+.ImgContainer {
+  background-image: url("./alo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  scroll-snap-align: start;
+  
+
+  .Slogan {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    flex-direction: column;
+   
+    
+    //background-color: red;
+
+    .searchbar {
+        margin-top: 2rem;
+      position: relative;
+      width: 20rem;
+      display: flex;
+      //background-color: red;
+    
+      align-items: center;
+      .search-btn {
+        position: absolute;
+        padding: .5rem;
+        right: 0.5rem;
+    
+      }
+    }
+  }
+
+   @keyframes aliya-aldo {
+    0%{
+      transform: translateY(0vw);
+    }
+    1%{
+      transform: translateY(-50vw);
+    }
+
+    100%{
+      transform: translateY(0vw);
+    }
+  }
+
+  .kataslogan {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 50%;
+    text-align: center;
+    line-height: 0.7;
+    // animation: aliya-aldo 2s linear;
+
+    
+  }
+
+  .Header {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    padding-top: 1rem;
+    
+    
+    // background-color: rgba(8, 86, 231, 0.349);
+    
+
+    .SubMenu {
+      display: flex;
+      justify-content: space-around;
+      width: 50%;
+    }
+
+    .MenuHeader {
+      cursor: pointer;
+      color: white;
+    }
+  }
+}
+.Features{
+    scroll-snap-align: start;
+}
+.Daftar{
+    
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 5rem;
+    
+    .Gradient{
+          background: linear-gradient(90deg, #ff7e5f, #feb47b);
+          -webkit-background-clip: text;
+           background-clip: text; 
+          -webkit-text-fill-color: transparent;
+    }
+    
+   
+    
+}
+.card1{
+   transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.card2{
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.card3{
+  transition: transform 0.6s ease;
+
+   &:hover {
+    transform: scale(1.05);
+  }
+}
+}

@@ -1,0 +1,95 @@
+.ProductContainer{
+    background-color: white;
+    .isiproduk{
+                display: flex;
+                flex-direction: row;
+                margin: 5rem;
+                background-color: whitesmoke;
+                gap: 2rem;
+                flex-wrap: wrap;
+                 box-shadow: 5px 5px 10px rgb(43, 40, 40);
+        .imageWrapper {
+            position: relative;
+            width: 30%;
+            flex: 1 1 300px;
+            background-color: whitesmoke;
+
+            img {
+                width: 80%;
+                object-fit: cover;
+            }
+
+            .badgeDiskon {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background-color: red;
+                color: whitesmoke;
+                padding: 5px 10px;
+                font-size: 0.9rem;
+                font-weight: bold;
+                border-radius: 5px;
+                    background: linear-gradient(45deg, red, orange);
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            }
+        }
+
+    .deskripsi{
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 2rem;
+            flex: 1 1 300px;
+            background-color: white;
+            .tombol{
+                gap: 2rem;
+            }
+        }
+    }
+    .commentsection{
+        display: flex;
+        margin: 5rem;
+        flex-direction: column;
+        background-color: white;
+        .jdl{
+            border-bottom: 2px solid black;
+            padding-bottom: 1rem;
+        }
+        padding: 2rem;
+        .isicomment{
+            display: flex;
+            flex-direction: column;
+            padding-top: 2rem;
+           background-color: whitesmoke;
+            margin-top: 2rem;
+            padding: 2rem;
+        }
+    }
+    @media (max-width: 768px) {
+    .isiproduk {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .deskripsi {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .badgeDiskon {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ProductContainer {
+        font-size: 0.9rem;
+    }
+
+    .deskripsi span:first-child {
+        font-size: 1.5rem !important;
+    }
+}
+
+}

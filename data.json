@@ -1,0 +1,12 @@
+{
+  "Products": [
+    {
+      "title": "Malkist",
+      "category": "Makanan",
+      "rating": "5.00",
+      "id": "ahtOz-Zy8CE"
+    }
+  ],
+  "user": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

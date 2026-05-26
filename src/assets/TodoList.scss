@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+    .Todolist{
+        background-color: #f76463;
+        width: 40vw;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        padding : 2rem;
+       
+        
+        .daftar{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            padding-top: 1rem;
+            border-top: 1px solid white;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+           .list{
+            margin-bottom: .5rem;
+            padding: .5rem;
+            background-color: #e68888;
+            display: flex;
+            width: 100%;
+            color: white;
+            justify-content: space-between;
+            align-self: center;
+            .p-button{
+                padding: 0;
+                height: auto;
+            }
+           }
+        }
+    }
+}
+
