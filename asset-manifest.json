@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/Project-Eccommerce/static/css/main.45d523c9.css",
+    "main.js": "/Project-Eccommerce/static/js/main.d0bf6d02.js",
+    "static/js/453.5774fb46.chunk.js": "/Project-Eccommerce/static/js/453.5774fb46.chunk.js",
+    "static/media/alo.jpg": "/Project-Eccommerce/static/media/alo.50f2cfa0bbd5574eb72f.jpg",
+    "static/media/cover.jpg": "/Project-Eccommerce/static/media/cover.fce2a0b32b79e4db2b4f.jpg",
+    "static/media/Login.jpg": "/Project-Eccommerce/static/media/Login.acd4351224199a7d19d7.jpg",
+    "static/media/bedroom.jpg": "/Project-Eccommerce/static/media/bedroom.c126013f293abbda82bb.jpg",
+    "static/media/InterVariable-Italic.woff2": "/Project-Eccommerce/static/media/InterVariable-Italic.e295f70fe3e2df296c7b.woff2",
+    "static/media/InterVariable.woff2": "/Project-Eccommerce/static/media/InterVariable.a0e477f2f1f9d2376fde.woff2",
+    "static/media/primeicons.svg": "/Project-Eccommerce/static/media/primeicons.6ed59f962963a4a73af2.svg",
+    "static/media/rumah2.webp": "/Project-Eccommerce/static/media/rumah2.6fd6d78a2b31881082d5.webp",
+    "static/media/gambar1.avif": "/Project-Eccommerce/static/media/gambar1.1a39fd2567ce14b89ea0.avif",
+    "static/media/gambar2.avif": "/Project-Eccommerce/static/media/gambar2.5c2120f52f53bdb9b407.avif",
+    "static/media/primeicons.eot": "/Project-Eccommerce/static/media/primeicons.ff0c4cd79b2ffca2de54.eot",
+    "static/media/primeicons.woff": "/Project-Eccommerce/static/media/primeicons.8931fda1930c3bd21e96.woff",
+    "static/media/primeicons.ttf": "/Project-Eccommerce/static/media/primeicons.a5c2a53d1ff7a9ff5933.ttf",
+    "static/media/rumah1.webp": "/Project-Eccommerce/static/media/rumah1.ccb14609a4e0303f4b09.webp",
+    "static/media/primeicons.woff2": "/Project-Eccommerce/static/media/primeicons.024b32cc7bf399b1a847.woff2",
+    "static/media/gambar3.avif": "/Project-Eccommerce/static/media/gambar3.3019d72f6ac6ffb7c40e.avif",
+    "static/media/logo.svg": "/Project-Eccommerce/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Project-Eccommerce/index.html",
+    "main.45d523c9.css.map": "/Project-Eccommerce/static/css/main.45d523c9.css.map",
+    "main.d0bf6d02.js.map": "/Project-Eccommerce/static/js/main.d0bf6d02.js.map",
+    "453.5774fb46.chunk.js.map": "/Project-Eccommerce/static/js/453.5774fb46.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45d523c9.css",
+    "static/js/main.d0bf6d02.js"
+  ]
+}
