@@ -127,7 +127,13 @@ const fixedPrice = totalPrice.toFixed(2);
                     </span>
 
                 </div>
-                <Sidebar header="Cart" visible={visible} position="right" style={{ width: '27vw' }} onHide={() => setVisible(false)}>
+                <Sidebar
+                        header="Cart"
+                        visible={visible}
+                        position="right"
+                        className="cartSidebar"
+                        onHide={() => setVisible(false)}
+                >
                     { cart?.length > 0 ?
                         cart?.map(item=>{
                             return(
@@ -158,7 +164,12 @@ const fixedPrice = totalPrice.toFixed(2);
                     </div>
                     <Button style={{width:"100%"}} label="Place Order" onClick={()=>handlePlaceOrder()}/>
                 </Sidebar>
-                <Dialog header="Checkout" visible={orderVisible} style={{ width: '27vw' }} onHide={() => setOrderVisible(false)}>
+                <Dialog
+                    header="Checkout"
+                    visible={orderVisible}
+                    className="checkoutDialog"
+                    onHide={() => setOrderVisible(false)}
+                >
                 
                     <div className="checkoutcard" style={{display:"flex", flexDirection:"column", padding:"1rem", gap:".5rem"}}>
                         <span style={{fontWeight:"bold", fontSize:"1rem"}}>{globalData.firstName} {globalData.lastName}</span>

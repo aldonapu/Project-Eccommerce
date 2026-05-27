@@ -1,95 +1,197 @@
-.ProductContainer{
-    background-color: white;
-    .isiproduk{
-                display: flex;
-                flex-direction: row;
-                margin: 5rem;
-                background-color: whitesmoke;
-                gap: 2rem;
-                flex-wrap: wrap;
-                 box-shadow: 5px 5px 10px rgb(43, 40, 40);
-        .imageWrapper {
-            position: relative;
-            width: 30%;
-            flex: 1 1 300px;
-            background-color: whitesmoke;
+.ProductContainer {
+  background-color: white;
+  padding-bottom: 2rem;
 
-            img {
-                width: 80%;
-                object-fit: cover;
-            }
+  /* ================= PRODUCT SECTION ================= */
 
-            .badgeDiskon {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                background-color: red;
-                color: whitesmoke;
-                padding: 5px 10px;
-                font-size: 0.9rem;
-                font-weight: bold;
-                border-radius: 5px;
-                    background: linear-gradient(45deg, red, orange);
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            }
-        }
+  .isiproduk {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem;
+    background-color: whitesmoke;
+    gap: 2rem;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 10px rgb(43, 40, 40);
+    border-radius: 12px;
+    overflow: hidden;
 
-    .deskripsi{
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            gap: 2rem;
-            flex: 1 1 300px;
-            background-color: white;
-            .tombol{
-                gap: 2rem;
-            }
-        }
-    }
-    .commentsection{
-        display: flex;
-        margin: 5rem;
-        flex-direction: column;
-        background-color: white;
-        .jdl{
-            border-bottom: 2px solid black;
-            padding-bottom: 1rem;
-        }
-        padding: 2rem;
-        .isicomment{
-            display: flex;
-            flex-direction: column;
-            padding-top: 2rem;
-           background-color: whitesmoke;
-            margin-top: 2rem;
-            padding: 2rem;
-        }
-    }
-    @media (max-width: 768px) {
-    .isiproduk {
-        flex-direction: column;
-        margin: 1rem;
+    .imageWrapper {
+      position: relative;
+      flex: 1 1 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: whitesmoke;
+      padding: 2rem;
+
+      img {
+        width: 100%;
+        max-width: 450px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .badgeDiskon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(45deg, red, orange);
+        color: whitesmoke;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
     }
 
     .deskripsi {
-        padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      gap: 1.5rem;
+      flex: 1 1 350px;
+      background-color: white;
+
+      .judulProduk {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      .harga {
+        font-weight: bold;
+        font-size: 2rem;
+      }
+
+      .tombol {
+        display: flex;
         gap: 1rem;
+
+        .p-button {
+          min-width: 180px;
+        }
+      }
+    }
+  }
+
+  /* ================= COMMENT SECTION ================= */
+
+  .commentsection {
+    display: flex;
+    margin: 3rem;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem;
+
+    .jdl {
+      border-bottom: 2px solid black;
+      padding-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    .badgeDiskon {
-        font-size: 0.8rem;
-        padding: 4px 8px;
+    .isicomment {
+      display: flex;
+      flex-direction: column;
+      background-color: whitesmoke;
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 10px;
+      gap: 0.5rem;
     }
-}
+  }
 
-@media (max-width: 480px) {
-    .ProductContainer {
-        font-size: 0.9rem;
+  /* ================= TABLET ================= */
+
+  @media screen and (max-width: 768px) {
+    .isiproduk {
+      flex-direction: column;
+      margin: 1.5rem;
+
+      .imageWrapper {
+        padding: 1.5rem;
+
+        img {
+          max-width: 100%;
+        }
+      }
+
+      .deskripsi {
+        padding: 1.5rem;
+        gap: 1rem;
+
+        .judulProduk {
+          font-size: 2.2rem;
+        }
+
+        .harga {
+          font-size: 1.7rem;
+        }
+      }
     }
 
-    .deskripsi span:first-child {
-        font-size: 1.5rem !important;
+    .commentsection {
+      margin: 1.5rem;
+      padding: 1.5rem;
     }
-}
+  }
 
+  /* ================= MOBILE ================= */
+
+  @media screen and (max-width: 576px) {
+    .isiproduk {
+      margin: 1rem;
+      gap: 1rem;
+
+      .imageWrapper {
+        padding: 1rem;
+
+        img {
+          width: 100%;
+        }
+
+        .badgeDiskon {
+          top: 10px;
+          left: 10px;
+          font-size: 0.75rem;
+          padding: 4px 8px;
+        }
+      }
+
+      .deskripsi {
+        padding: 1rem;
+
+        .judulProduk {
+          font-size: 1.8rem;
+          line-height: 2.3rem;
+        }
+
+        .harga {
+          font-size: 1.5rem;
+        }
+
+        .tombol {
+          width: 100%;
+
+          .p-button {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .commentsection {
+      margin: 1rem;
+      padding: 1rem;
+
+      .jdl {
+        font-size: 1.2rem;
+      }
+
+      .isicomment {
+        padding: 1rem;
+      }
+    }
+  }
 }

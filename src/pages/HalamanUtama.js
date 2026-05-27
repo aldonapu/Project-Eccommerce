@@ -13,6 +13,7 @@ import { InputText } from 'primereact/inputtext';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { useAppContext } from "../App";
 import { Toast } from "primereact/toast";
+import { Skeleton } from 'primereact/skeleton';
 
 const HalamanUtama =() =>{
 
@@ -107,12 +108,12 @@ const HalamanUtama =() =>{
                             <img alt="Card" src={product.thumbnail} style={{width:"100px"}} onClick={() => navigate('/detail',{state:product})}/>
                             </div>
                             <div className='textarea'>
-                                <span style={{fontWeight:"bold", fontSize:"1rem", paddingBottom:"1rem"}}>{product.title}</span>
+                                <span>{product.title}</span>
                                 <Rating value={product.rating} readOnly cancel={false} />
                                 
                             </div>
                             <div style={{display:"flex" , alignItems:"center", justifyContent:"space-between", margin:".5rem" }}> 
-                                <span style={{color:"grey", fontSize:"1rem"}}>${product.price}</span>
+                                <span>${product.price}</span>
                                 <Button onClick={()=>addToCart(product)} type="button" icon="pi pi-shopping-cart" severity="secondary" rounded/>
                             </div>
                         </div>

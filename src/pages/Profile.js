@@ -25,7 +25,7 @@ return(
     <div className="ProfileContainer" >
         <div className="ProfilArea">
             <div className="PP">
-                <img style={{borderRadius:"50%", height:"100px", width:"100px", backgroundColor:"black"}} src={globalData.image} />
+                <img  src={globalData.image} />
                 <span>{globalData.firstName} {globalData.lastName} </span>
             </div>
         <Button label="Update"/>
