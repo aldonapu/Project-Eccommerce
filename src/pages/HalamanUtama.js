@@ -28,8 +28,7 @@ const HalamanUtama =() =>{
             const exist = prev.find((item) => item.id === product.id);
 
             if (exist) {
-                return 
-                prev.map((item) =>
+                return prev.map((item) =>
                 item.id === product.id
                     ? { ...item, qty: item.qty + 1 }
                     : item

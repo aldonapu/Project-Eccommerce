@@ -5,15 +5,43 @@ import Header from "../components/Header";
 import { useLocation } from 'react-router-dom';
 import { Rating } from 'primereact/rating';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from "react";
+import { useAppContext } from "../App";
+import { Toast } from "primereact/toast";
 
 const DetaiProduct = () =>{
-  const navigate = useNavigate();
-  const location = useLocation();
-  const produk = location.state;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const produk = location.state;
+    const {cart, setCart} = useAppContext();
+     const toast = useRef(null);
+
+    const handleClick =()=>{
+         setCart((prev) => {
+            const exist = prev.find((item) => item.id === produk.id);
+
+            if (exist) {
+                return prev.map((item) =>
+                item.id === produk.id
+                    ? { ...item, qty: item.qty + 1 }
+                    : item
+                );
+            } else {
+                return [...prev, { ...produk, qty: 1 }];
+            }
+        });
+        toast.current.show({
+            severity: "success",
+            summary: `${produk.title} Added`,
+            life: 500,
+        });
+    }
+
     return(
         <>
         <Header />
         <div className="ProductContainer">
+            <Toast ref={toast} />
             <div className="isiproduk">
                    <div className="imageWrapper">
                     <img src={produk.images[0]} />
@@ -29,7 +57,7 @@ const DetaiProduct = () =>{
                    <span style={{fontWeight:"bold", fontSize:"2rem"}}>${produk.price}</span> 
                    <Rating value={produk.rating} readOnly cancel={false} />
                         <div className="tombol">
-                            <Button style={{backgroundColor:"red"}} label="Buy Now" />
+                            <Button style={{backgroundColor:"red"}} label="Buy Now" onClick={()=>handleClick()}/>
                         </div>
                 </div>
 
