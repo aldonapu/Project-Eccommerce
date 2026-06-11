@@ -12,16 +12,17 @@ import { Toast } from "primereact/toast";
 import { Badge } from 'primereact/badge';
 
 const Header = ()=>{
-    const {globalData, cart,setCart} = useAppContext();
+    const {globalData, cart,setCart, setGlobalData} = useAppContext();
     const navigate = useNavigate();
     const op = useRef(null);
     const [visible, setVisible] = useState(false);
     const[orderVisible, setOrderVisible]=useState(false);
     const[userData, setUserData] = useState()
-        const toast = useRef(null);
+    const toast = useRef(null);
     
 
-        useEffect(()=>{
+    useEffect(()=>{
+        if(!globalData) return
         axios.get(`https://dummyjson.com/users/${globalData.id}`)
         .then((res)=>{
             setUserData(res.data)
@@ -33,7 +34,11 @@ const Header = ()=>{
     
     const Logout=()=>{
         localStorage.removeItem("token");
+        setUserData();
+        setGlobalData();
+
         navigate('/')
+
     }
 
     const handlePlaceOrder = ()=>{
@@ -109,14 +114,15 @@ const fixedPrice = totalPrice.toFixed(2);
                     <span>About</span>
                     <span>Contact</span>
                 </div>
-                <div className="user">
+                
+                {globalData &&<div className="user">
                     <span className="pi pi-user" onClick={(e)=>op.current.toggle(e)}></span>
                     <OverlayPanel ref={op}>
-                    <div style={{display: "flex", flexDirection: "column", gap:"1rem"}}>
-                   <span>Hi, {globalData?.firstName} {globalData?.lastName}</span>
-                   <span className="pi pi-user" onClick={()=>navigate('/Profile')}> Profile</span>
-                    <span className="pi pi-sign-out" onClick={(e)=>Logout(e)}> Logout</span>
-                    </div>
+                        <div style={{display: "flex", flexDirection: "column", gap:"1rem"}}>
+                            <span>Hi, {globalData?.firstName} {globalData?.lastName}</span>
+                            <span className="pi pi-user" onClick={()=>navigate('/Profile')}> Profile</span>
+                            <span className="pi pi-sign-out" onClick={(e)=>Logout(e)}> Logout</span>
+                        </div>
                     </OverlayPanel>
                     <span className="pi pi-search"></span>
                     <span className="pi pi-heart"></span>
@@ -126,7 +132,7 @@ const fixedPrice = totalPrice.toFixed(2);
                         }
                     </span>
 
-                </div>
+                </div>}
                 <Sidebar
                         header="Cart"
                         visible={visible}
@@ -164,7 +170,7 @@ const fixedPrice = totalPrice.toFixed(2);
                     </div>
                     <Button style={{width:"100%"}} label="Place Order" onClick={()=>handlePlaceOrder()}/>
                 </Sidebar>
-                <Dialog
+               {globalData&& <Dialog
                     header="Checkout"
                     visible={orderVisible}
                     className="checkoutDialog"
@@ -220,7 +226,7 @@ const fixedPrice = totalPrice.toFixed(2);
                     </div>
 
 
-                </Dialog>
+                </Dialog>}
             </div>
     )
 }

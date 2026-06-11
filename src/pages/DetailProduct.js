@@ -13,7 +13,7 @@ const DetaiProduct = () =>{
     const navigate = useNavigate();
     const location = useLocation();
     const produk = location.state;
-    const {cart, setCart} = useAppContext();
+    const {cart, setCart, globalData} = useAppContext();
      const toast = useRef(null);
 
     const handleClick =()=>{
@@ -57,7 +57,7 @@ const DetaiProduct = () =>{
                    <span style={{fontWeight:"bold", fontSize:"2rem"}}>${produk.price}</span> 
                    <Rating value={produk.rating} readOnly cancel={false} />
                         <div className="tombol">
-                            <Button style={{backgroundColor:"red"}} label="Buy Now" onClick={()=>handleClick()}/>
+                            <Button style={{backgroundColor:"red"}} label="Buy Now" onClick={()=>!globalData ? navigate('/Login') : handleClick()}/>
                         </div>
                 </div>
 

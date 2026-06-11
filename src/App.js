@@ -27,14 +27,12 @@ function App() {
   return(
     <AppContext.Provider value={{globalData, setGlobalData, cart, setCart}}>
     <Routes>
-      <Route path='/' element={<Login />} />
-      <Route element={<ProtectedRoute />}>
+      <Route path='/' element={<HalamanUtama />} />
         <Route path='/Dashboard' element={<HalamanUtama />} />
+        <Route path='/Login' element={<Login />} />
         <Route path='/Detail' element={<DetailProduct />} />
         <Route path='/Profile' element={<Profile />} />
         <Route path='/User' element={<UserProfile />} />
-
-      </Route>
     </Routes>
     </AppContext.Provider>
   )

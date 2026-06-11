@@ -18,7 +18,7 @@ import { Skeleton } from 'primereact/skeleton';
 const HalamanUtama =() =>{
 
     const navigate = useNavigate();
-    const {cart, setCart} = useAppContext();
+    const {cart, setCart, globalData} = useAppContext();
     const toast = useRef(null);
     const[products, setProducts] = useState([])
     const[search, setSearch] =useState("");
@@ -100,9 +100,9 @@ const HalamanUtama =() =>{
             
             <div className="Products">
             {
-                filterProducts.map(product =>{
+                filterProducts.map((product, i) =>{
                     return(
-                        <div className="CardProdut">
+                        <div key={`card-${i}`} className="CardProdut">
                             <div style={{backgroundColor:"whitesmoke", justifyContent:"center", alignItems:"center", display:"flex"}}>
                             <img alt="Card" src={product.thumbnail} style={{width:"100px"}} onClick={() => navigate('/detail',{state:product})}/>
                             </div>
@@ -113,7 +113,8 @@ const HalamanUtama =() =>{
                             </div>
                             <div style={{display:"flex" , alignItems:"center", justifyContent:"space-between", margin:".5rem" }}> 
                                 <span>${product.price}</span>
-                                <Button onClick={()=>addToCart(product)} type="button" icon="pi pi-shopping-cart" severity="secondary" rounded/>
+                                <Button 
+                                onClick={()=>!globalData ? navigate('/Login') : addToCart(product)}  type="button" icon="pi pi-shopping-cart" severity="secondary" rounded/>
                             </div>
                         </div>
                     )
