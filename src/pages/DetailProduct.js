@@ -1,11 +1,10 @@
 import "../assets/DetailProduct.scss"
-import bedroom from "../assets/bedroom.jpg"
 import { Button } from "primereact/button";
 import Header from "../components/Header";
 import { useLocation } from 'react-router-dom';
 import { Rating } from 'primereact/rating';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from "react";
+import {  useRef } from "react";
 import { useAppContext } from "../App";
 import { Toast } from "primereact/toast";
 
@@ -13,7 +12,7 @@ const DetaiProduct = () =>{
     const navigate = useNavigate();
     const location = useLocation();
     const produk = location.state;
-    const {cart, setCart, globalData} = useAppContext();
+    const { setCart, globalData} = useAppContext();
      const toast = useRef(null);
 
     const handleClick =()=>{
@@ -44,7 +43,7 @@ const DetaiProduct = () =>{
             <Toast ref={toast} />
             <div className="isiproduk">
                    <div className="imageWrapper">
-                    <img src={produk.images[0]} />
+                    <img src={produk.images[0]} alt={produk.title} />
                     <span className="badgeDiskon">{produk.discountPercentage}%</span>
                 </div>
                 <div className="deskripsi">
@@ -53,9 +52,9 @@ const DetaiProduct = () =>{
                    <span>{produk.description}</span>
               
                    <span style={{fontWeight:"bold", fontSize:"1.2rem"}}>{produk.brand}</span>
+                   <Rating value={produk.rating} readOnly cancel={false} />
                    <span style={{color:"grey"}}>PRICE</span>
                    <span style={{fontWeight:"bold", fontSize:"2rem"}}>${produk.price}</span> 
-                   <Rating value={produk.rating} readOnly cancel={false} />
                         <div className="tombol">
                             <Button style={{backgroundColor:"red"}} label="Buy Now" onClick={()=>!globalData ? navigate('/Login') : handleClick()}/>
                         </div>

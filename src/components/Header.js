@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import React, { useRef, useState, useEffect } from 'react';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { useAppContext } from "../App";
-import { OrderList } from 'primereact/orderlist';
 import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
 import { Sidebar } from 'primereact/sidebar';
@@ -11,12 +10,15 @@ import axios from "axios";
 import { Toast } from "primereact/toast";
 import { Badge } from 'primereact/badge';
 
+
 const Header = ()=>{
-    const {globalData, cart,setCart, setGlobalData} = useAppContext();
+    const {globalData, cart,setCart, setGlobalData, like, setLike} = useAppContext();
     const navigate = useNavigate();
     const op = useRef(null);
+    const likeOp = useRef(null);
     const [visible, setVisible] = useState(false);
     const[orderVisible, setOrderVisible]=useState(false);
+
     const[userData, setUserData] = useState()
     const toast = useRef(null);
     
@@ -28,7 +30,7 @@ const Header = ()=>{
             setUserData(res.data)
             console.log(res.data)
         })
-    },[])
+    },[globalData])
 
 
     
@@ -36,7 +38,6 @@ const Header = ()=>{
         localStorage.removeItem("token");
         setUserData();
         setGlobalData();
-
         navigate('/')
 
     }
@@ -125,7 +126,10 @@ const fixedPrice = totalPrice.toFixed(2);
                         </div>
                     </OverlayPanel>
                     <span className="pi pi-search"></span>
-                    <span className="pi pi-heart"></span>
+                    <span className="pi pi-heart"  onClick={(e)=> likeOp.current.toggle(e) } style={{cursor:"pointer"}}>{
+                        like.length >0 && <Badge  value={like.length}></Badge>
+                        }
+                        </span>
                     <span className="pi pi-shopping-cart" onClick={()=>setVisible(true)}>
                         {
                             cart.length >0 && <Badge value={cart.length}></Badge>
@@ -145,9 +149,9 @@ const fixedPrice = totalPrice.toFixed(2);
                             return(
                                    <>
                                 <div className="CartContainer">
-                                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", backgroundColor:"whitesmoke", marginTop:"1rem", padding:".5rem"}} className="Cart">
+                                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", backgroundColor:"whitesmoke", marginTop:"1rem", padding:".5rem", width:"100%"}} className="Cart">
                                     <div style={{display:"flex", alignItems:"center", }}>
-                                    <img style={{width:"5rem"}} src={item.thumbnail}/>
+                                    <img style={{width:"5rem"}} src={item.thumbnail} alt={item.title}/>
                                     <span style={{marginLeft:".2rem", width: '10rem'}}>{item.title}</span>
                                     </div>
                                     <div style={{display:"flex", alignItems:"center", gap:".3rem", width:"15rem"}}>
@@ -187,13 +191,13 @@ const fixedPrice = totalPrice.toFixed(2);
                    
                     <div className="checkoutcard" style={{display :"flex", marginTop:".5rem", padding:"1rem", flexDirection:"column"}}>
                      {
-                        cart.map(item=>{
+                        cart.map((item,i)=>{
 
                             return(
-                                <div style={{marginTop:".5rem", backgroundColor:"whitesmoke", padding:".5rem"}}>
+                                <div key={`card-${i}`} style={{marginTop:".5rem", backgroundColor:"whitesmoke", padding:".5rem"}}>
                                 <span>{item.brand}</span>
                                 <div style={{display:"flex", justifyContent:"space-between", width:"100%"}}>
-                                    <img style={{width:"5rem"}} src={item.thumbnail} />
+                                    <img style={{width:"5rem"}} src={item.thumbnail} alt={item.title} />
                                     <div style={{display:"flex", flexDirection:"column"}}>
                                         <span>{item.title}</span>
                                         <span>{item.price}</span>
@@ -227,8 +231,41 @@ const fixedPrice = totalPrice.toFixed(2);
 
 
                 </Dialog>}
+            <OverlayPanel ref={likeOp} style={{width:"350px"}}>
+                    <div style={{display:"flex", flexDirection:"column", gap:"1rem"}}>
+                        <span>Favorite Products</span>
+                        { like.length > 0 ?
+                            like.map((item,i)=>{
+                                return(
+                                  <div key={`card-${i}`} style={{display:"flex", alignItems:"center", gap:".5rem", paddingBottom:".5rem", backgroundColor:"whitesmoke", margin:".5rem"}}  onClick={() => {
+                                     navigate('/detail', { state: item });
+                                    likeOp.current.hide();
+                                    }}>
+                                    <img src={item.thumbnail} alt={item.title} style={{width:"50px", height:"50px", objectFit:"cover"}} />
+                                    <div style={{display:"flex", flexDirection:"column", flex:"1"}}> 
+                                         <span>{item.title}</span>
+                                         <span>${item.price}</span>
+                                    </div>
+                                     <Button icon="pi pi-times" text severity="danger" onClick={() =>
+                                        setLike(prev =>
+                                        prev.filter(
+                                        product => product.id !== item.id
+                                        )
+                                    )
+                                    }
+                                    />
+                                    </div>
+                                )
+                            })
+                            : <span>There's No Items In Favorite</span>
+                        }
+                    </div>
+
+            </OverlayPanel>
             </div>
     )
+
+ 
 }
 
 export default Header

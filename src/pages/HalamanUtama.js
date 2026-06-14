@@ -1,24 +1,20 @@
 import 'primeicons/primeicons.css';
 import "../assets/HalamanUtama.scss"      
 import { Button } from "primereact/button";
-import Cards from "../components/card";
-import { Card } from 'primereact/card';
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useEffect, useState, useRef } from 'react';
-import { Rating } from 'primereact/rating';
 import Header from '../components/Header';
 import cover from '../assets/cover.jpg'
 import { useNavigate } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
-import { OverlayPanel } from 'primereact/overlaypanel';
 import { useAppContext } from "../App";
 import { Toast } from "primereact/toast";
-import { Skeleton } from 'primereact/skeleton';
+
 
 const HalamanUtama =() =>{
 
     const navigate = useNavigate();
-    const {cart, setCart, globalData} = useAppContext();
+    const { setCart, globalData, like, setLike} = useAppContext();
     const toast = useRef(null);
     const[products, setProducts] = useState([])
     const[search, setSearch] =useState("");
@@ -44,10 +40,37 @@ const HalamanUtama =() =>{
         });
     };
 
+const handleLike = (product) => {
+    const exist = like.some((item) => item.id === product.id);
 
-    const filterProducts = products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+    setLike((prev) => {
+        if (exist) {
+            return prev.filter((item) => item.id !== product.id);
+        }
 
-    useEffect(()=>{
+        return [...prev, product];
+    });
+
+    toast.current.show({
+        severity: exist ? "warn" : "success",
+        summary: exist
+            ? `${product.title} Removed from Favorites`
+            : `${product.title} Added to Favorites`,
+        life: 1000,
+    });
+};
+
+const isLiked = (id) =>{
+    return like.some((item)=> item.id === id);
+}
+
+useEffect (()=>{
+    localStorage.setItem("likes", JSON.stringify(like))
+},[like])
+
+const filterProducts = products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+
+useEffect(()=>{
         axios.get('https://dummyjson.com/products')
         .then((res)=>{
             setProducts(res.data.products)
@@ -63,7 +86,7 @@ const HalamanUtama =() =>{
         <Header />
             <div className="Banner">
                 <div className="gmbr">
-                    <img src={cover}/>
+                    <img src={cover} alt='cover'/>
                 </div>
                 <div className="Slogan">
                     <span style={{fontWeight:"bold"}}>New Arrival</span>
@@ -107,14 +130,16 @@ const HalamanUtama =() =>{
                             <img alt="Card" src={product.thumbnail} style={{width:"100px"}} onClick={() => navigate('/detail',{state:product})}/>
                             </div>
                             <div className='textarea'>
-                                <span>{product.title}</span>
-                                <Rating value={product.rating} readOnly cancel={false} />
+                                
+                                <span style={{fontSize:".8rem"}}>{product.title}</span>
+                                <div style={{display: 'flex', alignItems:"center", justifyContent:"space-between"}}>    
+                                <span style={{fontSize:"1rem"}}>${product.price}</span>
+                                <Button icon={isLiked(product.id) ? "pi pi-heart-fill" : "pi pi-heart"} onClick={()=> !globalData ? navigate('/Login') : handleLike(product)} rounded text severity="warning" aria-label="Favorite" />
+                                </div>
                                 
                             </div>
-                            <div style={{display:"flex" , alignItems:"center", justifyContent:"space-between", margin:".5rem" }}> 
-                                <span>${product.price}</span>
-                                <Button 
-                                onClick={()=>!globalData ? navigate('/Login') : addToCart(product)}  type="button" icon="pi pi-shopping-cart" severity="secondary" rounded/>
+                            <div style={{display:"flex" , alignItems:"center", justifyContent:"center", backgroundColor:"orange", height:"100%", padding:"1rem" }} onClick={()=>!globalData ? navigate('/Login') : addToCart(product)}> 
+                                <span style={{color:"white", fontWeight:"bold", cursor:"pointer"}}>ADD TO CART</span>  
                             </div>
                         </div>
                     )
